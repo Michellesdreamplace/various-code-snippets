@@ -18,9 +18,8 @@ public class CPHInline
 			// Weitere Logik für "Lurker" anhand einer Chat-Nachricht
 			if (CPH.UserInGroup(currUser, platform, groupName))
 			{
-				if (currUserRawInput.Contains("!lurk") || currUserRawInput.Contains("!unlurk") || currUserRawInput.Contains("!lurker")){
-				}else
-				{
+				if (currUserRawInput.Contains("!lurk") || currUserRawInput.Contains("!unlurk") || currUserRawInput.Contains("!lurker"))	{
+				}	else	{
 					// Lurker, die irgendwas schreiben
 					CPH.RemoveUserFromGroup(currUser, platform, groupName);
 					Thread.Sleep(200);
