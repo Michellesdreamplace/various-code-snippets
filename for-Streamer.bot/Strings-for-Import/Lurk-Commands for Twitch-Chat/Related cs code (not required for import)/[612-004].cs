@@ -18,23 +18,18 @@ public class CPHInline
 			// Weitere Logik für "Lurker" anhand einer Chat-Nachricht
 			if (CPH.UserInGroup(currUser, platform, groupName))
 			{
-				if (currUserRawInput.Contains("!lurk") || currUserRawInput.Contains("!unlurk") || currUserRawInput.Contains("!lurker"))
-				{
-					// Lurker, die einen der o.g. Befehle schreiben
-				}
-				else
+				if (currUserRawInput.Contains("!lurk") || currUserRawInput.Contains("!unlurk") || currUserRawInput.Contains("!lurker")){
+				}else
 				{
 					// Lurker, die irgendwas schreiben
 					CPH.RemoveUserFromGroup(currUser, platform, groupName);
 					Thread.Sleep(200);
 					CPH.SendMessage("wb " + currUser + " <3 Schön, dass du wieder aus dem Lurk zurück bist <3 <3 <3");	// ◄◄◄◄◄ HIER kann der Text angepasst werden
-					//return true;
 				}
 			}
 
-		// Count in .txt schreiben
-		string savePath = CPH.GetGlobalVar<string>("TXT_for_OBS_Pfad");
-		string saveName = CPH.GetGlobalVar<string>("TXT_Filename_Current_Lurker_Count");
+		string savePath = CPH.GetGlobalVar<string>("PATH_for_TXT_for_OBS");
+		string saveName = CPH.GetGlobalVar<string>("PATH_for_TXT_Filename_Current_Lurker_Count");
 		string saveFile = (savePath + saveName);
 		var groupUsersCount = CPH.UsersInGroup(groupName);
 		int userCount_int = groupUsersCount.Count;

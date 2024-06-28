@@ -15,14 +15,14 @@ public class CPHInline
 		}	else	{
 		Directory.CreateDirectory($@"TXT_for_OBS");
 		}
-		CPH.SetGlobalVar("TXT_for_OBS_Pfad", "TXT_for_OBS\\", true);
-		CPH.SetGlobalVar("TXT_Filename_Current_Lurker_Count", "Current_Lurker_Count.txt", true);
+		CPH.SetGlobalVar("PATH_for_TXT_for_OBS", "TXT_for_OBS\\", true);
+		CPH.SetGlobalVar("PATH_for_TXT_Filename_Current_Lurker_Count", "Current_Lurker_Count.txt", true);
 		CPH.SetGlobalVar("GROUP_NAME_Current_Lurker", "current_LURK", true);
 		Thread.Sleep(200);
 
 		//▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ Count in .txt schreiben ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
-		string savePath = CPH.GetGlobalVar<string>("TXT_for_OBS_Pfad");
-		string saveName = CPH.GetGlobalVar<string>("TXT_Filename_Current_Lurker_Count");
+		string savePath = CPH.GetGlobalVar<string>("PATH_for_TXT_for_OBS");
+		string saveName = CPH.GetGlobalVar<string>("PATH_for_TXT_Filename_Current_Lurker_Count");
 		string saveFile = (savePath + saveName);
 		string groupName = CPH.GetGlobalVar<string>("GROUP_NAME_Current_Lurker");
 		var groupUsersCount = CPH.UsersInGroup(groupName);

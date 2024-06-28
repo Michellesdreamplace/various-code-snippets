@@ -30,7 +30,6 @@ public class CPHInline
 				(currUser == TriggerUser_2 && currUserRawInput.Contains(TriggerUserTEXT_2)))
 
 				{
-					// Gruppe leeren:
 					CPH.ClearUsersFromGroup(groupName);
 					CPH.SendMessage("/me Gruppe der Lurker geleert...");	// ◄◄◄◄◄ HIER kann der Text angepasst werden
 					Thread.Sleep(200);
@@ -46,13 +45,11 @@ public class CPHInline
 					if (userCount == 0)
 					{
 						CPH.SendMessage("ℹ️ Derzeit ist niemand im Lurk 💤");	// ◄◄◄◄◄ HIER kann der Text angepasst werden
-						//return true;
 					}
 				}
 				
-		// Count in .txt schreiben
-		string savePath = CPH.GetGlobalVar<string>("TXT_for_OBS_Pfad");
-		string saveName = CPH.GetGlobalVar<string>("TXT_Filename_Current_Lurker_Count");
+		string savePath = CPH.GetGlobalVar<string>("PATH_for_TXT_for_OBS");
+		string saveName = CPH.GetGlobalVar<string>("PATH_for_TXT_Filename_Current_Lurker_Count");
 		string saveFile = (savePath + saveName);
 		var groupUsersCount = CPH.UsersInGroup(groupName);
 		int userCount_int = groupUsersCount.Count;

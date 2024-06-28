@@ -10,11 +10,11 @@ public class CPHInline
 {
     public bool Execute()
     {
-		int MaxMessageLength = 250;
+        int MaxMessageLength = 250;
 		Platform platform = Platform.Twitch;
 		string groupName = CPH.GetGlobalVar<string>("GROUP_NAME_Current_Lurker");
-		string currUser = args.ContainsKey("user") ? args["user"].ToString() : "UnknownUser";
-		string currUserCommand = args.ContainsKey("command") ? args["command"].ToString() : "NoCommand";
+        string currUser = args.ContainsKey("user") ? args["user"].ToString() : "UnknownUser";
+        string currUserCommand = args.ContainsKey("command") ? args["command"].ToString() : "NoCommand";
 
 			if (currUserCommand == "!lurk")
 			{
@@ -99,8 +99,8 @@ public class CPHInline
 				}
 			}
 
-		string savePath = CPH.GetGlobalVar<string>("TXT_for_OBS_Pfad");
-		string saveName = CPH.GetGlobalVar<string>("TXT_Filename_Current_Lurker_Count");
+		string savePath = CPH.GetGlobalVar<string>("PATH_for_TXT_for_OBS");
+		string saveName = CPH.GetGlobalVar<string>("PATH_for_TXT_Filename_Current_Lurker_Count");
 		string saveFile = (savePath + saveName);
 		var groupUsersCount = CPH.UsersInGroup(groupName);
 		int userCount_int = groupUsersCount.Count;
