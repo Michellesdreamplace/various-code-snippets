@@ -11,7 +11,7 @@ public class CPHInline
     public bool Execute()
     {
         Platform platform = Platform.Twitch;
-        string groupName = "current_LURK";
+		string groupName = CPH.GetGlobalVar<string>("GROUP_NAME_Current_Lurker");
         string currUser = args.ContainsKey("user") ? args["user"].ToString() : "UnknownUser";
         string currUserRawInput = args.ContainsKey("rawInput") ? args["rawInput"].ToString() : "NoRawInput";
      
@@ -28,9 +28,19 @@ public class CPHInline
 					CPH.RemoveUserFromGroup(currUser, platform, groupName);
 					Thread.Sleep(200);
 					CPH.SendMessage("wb " + currUser + " <3 Schön, dass du wieder aus dem Lurk zurück bist <3 <3 <3");	// ◄◄◄◄◄ HIER kann der Text angepasst werden
-					return true;
+					//return true;
 				}
 			}
+
+		// Count in .txt schreiben
+		string savePath = CPH.GetGlobalVar<string>("TXT_for_OBS_Pfad");
+		string saveName = CPH.GetGlobalVar<string>("TXT_Filename_Current_Lurker_Count");
+		string saveFile = (savePath + saveName);
+		var groupUsersCount = CPH.UsersInGroup(groupName);
+		int userCount_int = groupUsersCount.Count;
+		string userCount_String = userCount_int.ToString();
+		File.WriteAllText(saveFile, userCount_String);
+
 		return true;
     }
 }

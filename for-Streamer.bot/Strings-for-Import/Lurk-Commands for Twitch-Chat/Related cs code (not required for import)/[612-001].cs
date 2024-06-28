@@ -20,7 +20,7 @@ public class CPHInline
 		string TriggerUserTEXT_2 = "Lurker Gruppe leeren";	// Text, den der Benutzer schreibt, damit die Gruppe geleert wird.
 
 		
-        string groupName = "current_LURK";
+		string groupName = CPH.GetGlobalVar<string>("GROUP_NAME_Current_Lurker");
         string currUser = args.ContainsKey("user") ? args["user"].ToString() : "UnknownUser";
         string currUserCommand = args.ContainsKey("command") ? args["command"].ToString() : "NoCommand";
         string currUserRawInput = args.ContainsKey("rawInput") ? args["rawInput"].ToString() : "NoRawInput";
@@ -46,9 +46,19 @@ public class CPHInline
 					if (userCount == 0)
 					{
 						CPH.SendMessage("ℹ️ Derzeit ist niemand im Lurk 💤");	// ◄◄◄◄◄ HIER kann der Text angepasst werden
-						return true;
+						//return true;
 					}
 				}
+				
+		// Count in .txt schreiben
+		string savePath = CPH.GetGlobalVar<string>("TXT_for_OBS_Pfad");
+		string saveName = CPH.GetGlobalVar<string>("TXT_Filename_Current_Lurker_Count");
+		string saveFile = (savePath + saveName);
+		var groupUsersCount = CPH.UsersInGroup(groupName);
+		int userCount_int = groupUsersCount.Count;
+		string userCount_String = userCount_int.ToString();
+		File.WriteAllText(saveFile, userCount_String);
+
 		return true;
     }
 }
