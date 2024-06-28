@@ -21,14 +21,12 @@ public class CPHInline
 				if (CPH.UserInGroup(currUser, platform, groupName))
 				{
 					CPH.SendMessage(currUser + ", du bist doch schon längst im Lurk <3 Danke für den Support <3");	// ◄◄◄◄◄ HIER kann der Text angepasst werden
-					//return true;
 				}
 				else
 				{
 					CPH.AddUserToGroup(currUser, platform, groupName);
 					Thread.Sleep(200);
 					CPH.SendMessage(currUser + " verschwindet in den Lurk! 💤 💤 💤 Danke für den Support <3");	// ◄◄◄◄◄ HIER kann der Text angepasst werden
-					//return true;
 				}
 			}
 
@@ -39,12 +37,10 @@ public class CPHInline
 					CPH.RemoveUserFromGroup(currUser, platform, groupName);
 					Thread.Sleep(200);
 					CPH.SendMessage("wb " + currUser + " <3 Schön, dass du wieder hier bist <3 <3 <3");	// ◄◄◄◄◄ HIER kann der Text angepasst werden
-					//return true;
 				}
 				else
 				{
 					CPH.SendMessage(currUser + ", du warst doch gar nicht im Lurk <3");	// ◄◄◄◄◄ HIER kann der Text angepasst werden
-					//return true;
 				}
 			}
 
@@ -61,7 +57,6 @@ public class CPHInline
 				if (userCount == 0)
 				{
 					CPH.SendMessage("ℹ️ Derzeit ist niemand im Lurk 💤");	// ◄◄◄◄◄ HIER kann der Text angepasst werden
-					//return true;
 				}
 
 				List<string> userNames = new List<string>();
@@ -102,16 +97,14 @@ public class CPHInline
 				{
 					CPH.SendMessage("ℹ️ Aktuell (" + userCount + ") im Lurk: " + userNamesString + " 💤 Danke für den Support <3");	// ◄◄◄◄◄ HIER kann der Text angepasst werden
 				}
-				//return true;
 			}
 
-		// Count in .txt schreiben
 		string savePath = CPH.GetGlobalVar<string>("TXT_for_OBS_Pfad");
 		string saveName = CPH.GetGlobalVar<string>("TXT_Filename_Current_Lurker_Count");
 		string saveFile = (savePath + saveName);
 		var groupUsersCount = CPH.UsersInGroup(groupName);
 		int userCount_int = groupUsersCount.Count;
-		string userCount_String = userCount_int.ToString(); // Neue Zeile: Umwandlung von int zu string
+		string userCount_String = userCount_int.ToString();
 		File.WriteAllText(saveFile, userCount_String);
 
 		return true;
