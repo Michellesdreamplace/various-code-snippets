@@ -8,8 +8,8 @@ using Streamer.bot.Plugin.Interface.Model;
 
 public class CPHInline
 {
-    public bool Execute()
-    {
+	public bool Execute()
+	{
 		//▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ Ordnerstruktur und Variablen für Pfase erstellen ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
 		if (Directory.Exists($@"TXT_for_OBS"))	{
 		}	else	{
@@ -43,7 +43,6 @@ public class CPHInline
 		CPH.RemoveUserFromGroup(currBroadcasterUser, platform, groupName);
 		Thread.Sleep(200);
 
-
 	return true;
-    }
+	}
 }

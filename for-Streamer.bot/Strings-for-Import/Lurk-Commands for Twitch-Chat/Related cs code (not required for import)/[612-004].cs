@@ -8,24 +8,24 @@ using Streamer.bot.Plugin.Interface.Model;
 
 public class CPHInline
 {
-    public bool Execute()
-    {
-        Platform platform = Platform.Twitch;
+	public bool Execute()
+	{
+		Platform platform = Platform.Twitch;
 		string groupName = CPH.GetGlobalVar<string>("GROUP_NAME_Current_Lurker");
-        string currUser = args.ContainsKey("user") ? args["user"].ToString() : "UnknownUser";
-        string currUserRawInput = args.ContainsKey("rawInput") ? args["rawInput"].ToString() : "NoRawInput";
-     
-			// Weitere Logik für "Lurker" anhand einer Chat-Nachricht
-			if (CPH.UserInGroup(currUser, platform, groupName))
-			{
-				if (currUserRawInput.Contains("!lurk") || currUserRawInput.Contains("!unlurk") || currUserRawInput.Contains("!lurker"))	{
+		string currUser = args.ContainsKey("user") ? args["user"].ToString() : "UnknownUser";
+		string currUserRawInput = args.ContainsKey("rawInput") ? args["rawInput"].ToString() : "NoRawInput";
+
+		// Weitere Logik für "Lurker" anhand einer Chat-Nachricht
+		if (CPH.UserInGroup(currUser, platform, groupName))
+		{
+			if (currUserRawInput.Contains("!lurk") || currUserRawInput.Contains("!unlurk") || currUserRawInput.Contains("!lurker"))	{
 				}	else	{
 					// Lurker, die irgendwas schreiben
 					CPH.RemoveUserFromGroup(currUser, platform, groupName);
 					Thread.Sleep(200);
 					CPH.SendMessage("wb " + currUser + " <3 Schön, dass du wieder aus dem Lurk zurück bist <3 <3 <3");	// ◄◄◄◄◄ HIER kann der Text angepasst werden
 				}
-			}
+		}
 
 		string savePath = CPH.GetGlobalVar<string>("PATH_for_TXT_for_OBS");
 		string saveName = CPH.GetGlobalVar<string>("PATH_for_TXT_Filename_Current_Lurker_Count");
@@ -36,5 +36,5 @@ public class CPHInline
 		File.WriteAllText(saveFile, userCount_String);
 
 		return true;
-    }
+	}
 }
