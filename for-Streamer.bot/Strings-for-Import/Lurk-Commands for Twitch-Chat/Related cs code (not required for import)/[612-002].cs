@@ -10,11 +10,11 @@ public class CPHInline
 {
     public bool Execute()
     {
-        int MaxMessageLength = 250;
+		int MaxMessageLength = 250;
 		Platform platform = Platform.Twitch;
 		string groupName = CPH.GetGlobalVar<string>("GROUP_NAME_Current_Lurker");
-        string currUser = args.ContainsKey("user") ? args["user"].ToString() : "UnknownUser";
-        string currUserCommand = args.ContainsKey("command") ? args["command"].ToString() : "NoCommand";
+		string currUser = args.ContainsKey("user") ? args["user"].ToString() : "UnknownUser";
+		string currUserCommand = args.ContainsKey("command") ? args["command"].ToString() : "NoCommand";
 
 			if (currUserCommand == "!lurk")
 			{
