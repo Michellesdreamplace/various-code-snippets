@@ -12,6 +12,7 @@ public class CPHInline
 	{
 		Platform platform = Platform.Twitch;
 		string LURK_Message_meVoranstellen = CPH.GetGlobalVar<string>("LURK_Message_meVoranstellen");
+		string LURK_Message_wb = CPH.GetGlobalVar<string>("LURK_Message_wb");
 		string LURK_Message_UnlurkPerText = CPH.GetGlobalVar<string>("LURK_Message_UnlurkPerText");
 		string groupName = CPH.GetGlobalVar<string>("GROUP_NAME_Current_Lurker");
 		string currUser = args.ContainsKey("user") ? args["user"].ToString() : "UnknownUser";
@@ -25,7 +26,7 @@ public class CPHInline
 					// Lurker, die irgendwas schreiben
 					CPH.RemoveUserFromGroup(currUser, platform, groupName);
 					Thread.Sleep(200);
-					CPH.SendMessage(LURK_Message_meVoranstellen + " " + "wb " + currUser + LURK_Message_UnlurkPerText);	// ◄◄◄◄◄ HIER kann der Text-Anfang angepasst werden
+					CPH.SendMessage(LURK_Message_meVoranstellen + " " + LURK_Message_wb + " " + currUser + " " + LURK_Message_UnlurkPerText);
 				}
 		}
 

@@ -15,11 +15,12 @@ public class CPHInline
 		int MaxMessageLength = 250;
 		bool meVoranstellen = true;	// bei "true" wird ein "/me" bei allen Nachrichten vorangestellt - bei "false" nicht.
 
+		string Message_wb = "wb ";	// Begrüßung, die bei UNLURK vor "currUser" vorangestellt wird
 		string Message_GehtInLurk = " verschwindet in den Lurk! 💤 💤 💤 Danke für den Support <3";	// !lurk command ►►►["currUser" wird vorangestellt]
 		string Message_IstBereitsImLurk = ", du bist doch schon längst im Lurk <3 Danke für den Support <3";	// erneuter !lurk command ►►►["currUser" wird vorangestellt]
-		string Message_Unlurk = " <3 Schön, dass du wieder hier bist <3 <3 <3";	// !unlurk command ►►►["wb +currUser" wird vorangestellt]
+		string Message_Unlurk = " <3 Schön, dass du wieder hier bist <3 <3 <3";	// !unlurk command ►►►["Message_wb"+"currUser" wird vorangestellt]
 		string Message_UnlurkNoLurk = ", du warst doch gar nicht im Lurk <3";	// !unlurk command, obwohl gar nicht im Lurk war ►►►["currUser" wird vorangestellt]
-		string Message_UnlurkPerText = " <3 Schön, dass du wieder aus dem Lurk zurück bist <3 <3 <3";	// Lurker, die irgendwas schreiben -> Unlurk ►►►["wb +currUser" wird vorangestellt]
+		string Message_UnlurkPerText = " <3 Schön, dass du wieder aus dem Lurk zurück bist <3 <3 <3";	// Lurker, die irgendwas schreiben -> Unlurk ►►►["Message_wb"+"currUser" wird vorangestellt]
 		string Message_NiemandImLurk = "ℹ️ Derzeit ist niemand im Lurk 💤";	// Meldung, wenn Niemand im Lurk ist
 
 		string Message_BenutzergruppeGeleert = "/me Gruppe der Lurker geleert...";	// Meldung, wenn die Lurker-Gruppe geleert wurde
@@ -40,6 +41,7 @@ public class CPHInline
 		//▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ Variablen erstellen ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
 		CPH.SetGlobalVar("LURK_MaxMessageLength", MaxMessageLength, true);
 		CPH.SetGlobalVar("LURK_meVoranstellen", meVoranstellen, true);
+		CPH.SetGlobalVar("LURK_Message_wb", Message_wb, true);
 		CPH.SetGlobalVar("LURK_Message_GehtInLurk", Message_GehtInLurk, true);
 		CPH.SetGlobalVar("LURK_Message_IstBereitsImLurk", Message_IstBereitsImLurk, true);
 		CPH.SetGlobalVar("LURK_Message_Unlurk", Message_Unlurk, true);

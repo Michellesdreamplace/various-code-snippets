@@ -13,6 +13,7 @@ public class CPHInline
 		Platform platform = Platform.Twitch;
 		int MaxMessageLength = CPH.GetGlobalVar<int>("LURK_MaxMessageLength");
 		string LURK_Message_meVoranstellen = CPH.GetGlobalVar<string>("LURK_Message_meVoranstellen");
+		string LURK_Message_wb = CPH.GetGlobalVar<string>("LURK_Message_wb");
 		string LURK_Message_IstBereitsImLurk = CPH.GetGlobalVar<string>("LURK_Message_IstBereitsImLurk");
 		string LURK_Message_GehtInLurk = CPH.GetGlobalVar<string>("LURK_Message_GehtInLurk");
 		string LURK_Message_Unlurk = CPH.GetGlobalVar<string>("LURK_Message_Unlurk");
@@ -27,13 +28,13 @@ public class CPHInline
 			{
 				if (CPH.UserInGroup(currUser, platform, groupName))
 				{
-					CPH.SendMessage(LURK_Message_meVoranstellen + " " + currUser + LURK_Message_IstBereitsImLurk);
+					CPH.SendMessage(LURK_Message_meVoranstellen + " " + currUser + " " + LURK_Message_IstBereitsImLurk);
 				}
 				else
 				{
 					CPH.AddUserToGroup(currUser, platform, groupName);
 					Thread.Sleep(200);
-					CPH.SendMessage(LURK_Message_meVoranstellen + " " + currUser + LURK_Message_GehtInLurk);
+					CPH.SendMessage(LURK_Message_meVoranstellen + " " + currUser + " " + LURK_Message_GehtInLurk);
 				}
 			}
 
@@ -43,11 +44,11 @@ public class CPHInline
 				{
 					CPH.RemoveUserFromGroup(currUser, platform, groupName);
 					Thread.Sleep(200);
-					CPH.SendMessage(LURK_Message_meVoranstellen + " " + "wb " + currUser + LURK_Message_Unlurk);	// ◄◄◄◄◄ HIER kann der Text-Anfang angepasst werden
+					CPH.SendMessage(LURK_Message_meVoranstellen + " " + LURK_Message_wb + " " + currUser + " " + LURK_Message_Unlurk);
 				}
 				else
 				{
-					CPH.SendMessage(LURK_Message_meVoranstellen + " " + currUser + LURK_Message_UnlurkNoLurk);
+					CPH.SendMessage(LURK_Message_meVoranstellen + " " + currUser + " " + LURK_Message_UnlurkNoLurk);
 				}
 			}
 
