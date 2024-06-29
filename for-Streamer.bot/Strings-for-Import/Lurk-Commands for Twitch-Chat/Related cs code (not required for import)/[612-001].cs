@@ -10,15 +10,24 @@ public class CPHInline
 {
 	public bool Execute()
 	{
+		string LURK_TriggerUser_1 = CPH.GetGlobalVar<string>("LURK_TriggerUser_1");
+		string LURK_TriggerUserTEXT_1 = CPH.GetGlobalVar<string>("LURK_TriggerUserTEXT_1");
+		string LURK_TriggerUser_2 = CPH.GetGlobalVar<string>("LURK_TriggerUser_2");
+		string LURK_TriggerUserTEXT_2 = CPH.GetGlobalVar<string>("LURK_TriggerUserTEXT_2");
+		
 		string BC_USER = args.ContainsKey("broadcastUser") ? args["broadcastUser"].ToString() : "UnknownUser";
-		string TriggerUserBC_Command = "!clearLurker";	// Text, den der BROADCASTER schreibt, damit die Gruppe geleert wird.
+		string TriggerUserBC_Command = "!clearLurker";	// Text, den der BROADCASTER schreibt, damit die Gruppe geleert wird ►►►[als COMMAND aktiviert]
 
-		string TriggerUser_1 = "Sery_Bot";	// Benutzername, der den Trigger zum Gruppe-leeren auslöst.
-		string TriggerUserTEXT_1 = "Sery_Bot has joined";	// Text, den der Benutzer schreibt, damit die Gruppe geleert wird.
+		string TriggerUser_1 = LURK_TriggerUser_1;
+		string TriggerUserTEXT_1 = LURK_TriggerUserTEXT_1;
 
-		string TriggerUser_2 = "Michelle_7b7";	// Benutzername, der den Trigger zum Gruppe-leeren auslöst.
-		string TriggerUserTEXT_2 = "Lurker Gruppe leeren";	// Text, den der Benutzer schreibt, damit die Gruppe geleert wird.
+		string TriggerUser_2 = LURK_TriggerUser_2;
+		string TriggerUserTEXT_2 = LURK_TriggerUserTEXT_2;
 
+
+		string LURK_Message_BenutzergruppeGeleert = CPH.GetGlobalVar<string>("LURK_Message_BenutzergruppeGeleert");
+		string LURK_Message_FehlerBenutzergruppe = CPH.GetGlobalVar<string>("LURK_Message_FehlerBenutzergruppe");
+		string LURK_Message_NiemandImLurk = CPH.GetGlobalVar<string>("LURK_Message_NiemandImLurk");
 
 		string groupName = CPH.GetGlobalVar<string>("GROUP_NAME_Current_Lurker");
 		string currUser = args.ContainsKey("user") ? args["user"].ToString() : "UnknownUser";
@@ -31,20 +40,20 @@ public class CPHInline
 
 			{
 				CPH.ClearUsersFromGroup(groupName);
-				CPH.SendMessage("/me Gruppe der Lurker geleert...");	// ◄◄◄◄◄ HIER kann der Text angepasst werden
+				CPH.SendMessage(LURK_Message_BenutzergruppeGeleert);
 				Thread.Sleep(200);
 
 				var groupUsers = CPH.UsersInGroup(groupName);
 				if (groupUsers == null)
 				{
-					CPH.SendMessage("Fehler: Konnte die Benutzergruppe nicht abrufen.");
+					CPH.SendMessage(LURK_Message_FehlerBenutzergruppe);
 					return false;
 				}
 
 				int userCount = groupUsers.Count;
 				if (userCount == 0)
 				{
-					CPH.SendMessage("ℹ️ Derzeit ist niemand im Lurk 💤");	// ◄◄◄◄◄ HIER kann der Text angepasst werden
+					CPH.SendMessage(LURK_Message_NiemandImLurk);
 				}
 			}
 
