@@ -12,7 +12,7 @@ public class CPHInline
 	{
 
 		//▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ HIER kann der Text der Meldungen angepasst werden ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
-		int MaxMessageLength = 250;
+		int MaxMessageLength = 250;	// Wenn der Befehl "!lurker" aufgerufen wird und es zu viele Lurker-Namen für EINE Nachricht gibt, wird die Nachricht in mehrere Teile gesplittet.
 		bool meVoranstellen = true;	// bei "true" wird ein "/me" bei allen Nachrichten vorangestellt - bei "false" nicht.
 
 		string Message_wb = "wb";	// Begrüßung, die bei UNLURK vor "currUser" vorangestellt wird
