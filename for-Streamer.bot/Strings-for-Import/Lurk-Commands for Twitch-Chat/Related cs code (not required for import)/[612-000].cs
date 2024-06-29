@@ -10,7 +10,11 @@ public class CPHInline
 {
 	public bool Execute()
 	{
+
 		//▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ HIER kann der Text der Meldungen angepasst werden ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
+		int MaxMessageLength = 250;
+		bool meVoranstellen = true;	// bei "true" wird ein "/me" bei allen Nachrichten vorangestellt - bei "false" nicht.
+
 		string Message_GehtInLurk = " verschwindet in den Lurk! 💤 💤 💤 Danke für den Support <3";	// !lurk command ►►►["currUser" wird vorangestellt]
 		string Message_IstBereitsImLurk = ", du bist doch schon längst im Lurk <3 Danke für den Support <3";	// erneuter !lurk command ►►►["currUser" wird vorangestellt]
 		string Message_Unlurk = " <3 Schön, dass du wieder hier bist <3 <3 <3";	// !unlurk command ►►►["wb +currUser" wird vorangestellt]
@@ -19,7 +23,7 @@ public class CPHInline
 		string Message_NiemandImLurk = "ℹ️ Derzeit ist niemand im Lurk 💤";	// Meldung, wenn Niemand im Lurk ist
 
 		string Message_BenutzergruppeGeleert = "/me Gruppe der Lurker geleert...";	// Meldung, wenn die Lurker-Gruppe geleert wurde
-		string Message_FehlerBenutzergruppe = "Fehler: Konnte die Benutzergruppe nicht abrufen.";	// Fehlermeldung
+		string Message_FehlerBenutzergruppe = "/me Fehler: Konnte die Benutzergruppe nicht abrufen.";	// Fehlermeldung
 
 
 		//▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ Benutzer und deren Texte, zum leeren der Lurker-Gruppe ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
@@ -34,6 +38,8 @@ public class CPHInline
 //------------------------------------------------------------------------------------------------------------------------------------------------------
 
 		//▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ Variablen erstellen ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
+		CPH.SetGlobalVar("LURK_MaxMessageLength", MaxMessageLength, true);
+		CPH.SetGlobalVar("LURK_meVoranstellen", meVoranstellen, true);
 		CPH.SetGlobalVar("LURK_Message_GehtInLurk", Message_GehtInLurk, true);
 		CPH.SetGlobalVar("LURK_Message_IstBereitsImLurk", Message_IstBereitsImLurk, true);
 		CPH.SetGlobalVar("LURK_Message_Unlurk", Message_Unlurk, true);
@@ -46,6 +52,13 @@ public class CPHInline
 		CPH.SetGlobalVar("LURK_TriggerUserTEXT_1", LURK_TriggerUserTEXT_1, true);
 		CPH.SetGlobalVar("LURK_TriggerUser_2", LURK_TriggerUser_2, true);
 		CPH.SetGlobalVar("LURK_TriggerUserTEXT_2", LURK_TriggerUserTEXT_2, true);
+		
+		bool LURK_meVoranstellen = CPH.GetGlobalVar<bool>("LURK_meVoranstellen");
+		if (LURK_meVoranstellen)	{
+			CPH.SetGlobalVar("LURK_Message_meVoranstellen", "/me", true);
+			}	else	{
+			CPH.SetGlobalVar("LURK_Message_meVoranstellen", "", true);
+			}
 
 		//▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ Ordnerstruktur und Variablen für Pfase erstellen ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
 		if (Directory.Exists($@"TXT_for_OBS"))	{

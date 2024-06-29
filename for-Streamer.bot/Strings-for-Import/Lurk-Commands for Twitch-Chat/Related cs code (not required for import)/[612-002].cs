@@ -10,16 +10,15 @@ public class CPHInline
 {
 	public bool Execute()
 	{
-		int MaxMessageLength = 250;
 		Platform platform = Platform.Twitch;
+		int MaxMessageLength = CPH.GetGlobalVar<int>("LURK_MaxMessageLength");
+		string LURK_Message_meVoranstellen = CPH.GetGlobalVar<string>("LURK_Message_meVoranstellen");
 		string LURK_Message_IstBereitsImLurk = CPH.GetGlobalVar<string>("LURK_Message_IstBereitsImLurk");
 		string LURK_Message_GehtInLurk = CPH.GetGlobalVar<string>("LURK_Message_GehtInLurk");
 		string LURK_Message_Unlurk = CPH.GetGlobalVar<string>("LURK_Message_Unlurk");
 		string LURK_Message_UnlurkNoLurk = CPH.GetGlobalVar<string>("LURK_Message_UnlurkNoLurk");
 		string LURK_Message_FehlerBenutzergruppe = CPH.GetGlobalVar<string>("LURK_Message_FehlerBenutzergruppe");
 		string LURK_Message_NiemandImLurk = CPH.GetGlobalVar<string>("LURK_Message_NiemandImLurk");
-
-
 		string groupName = CPH.GetGlobalVar<string>("GROUP_NAME_Current_Lurker");
 		string currUser = args.ContainsKey("user") ? args["user"].ToString() : "UnknownUser";
 		string currUserCommand = args.ContainsKey("command") ? args["command"].ToString() : "NoCommand";
@@ -28,13 +27,13 @@ public class CPHInline
 			{
 				if (CPH.UserInGroup(currUser, platform, groupName))
 				{
-					CPH.SendMessage(currUser + LURK_Message_IstBereitsImLurk);
+					CPH.SendMessage(LURK_Message_meVoranstellen + " " + currUser + LURK_Message_IstBereitsImLurk);
 				}
 				else
 				{
 					CPH.AddUserToGroup(currUser, platform, groupName);
 					Thread.Sleep(200);
-					CPH.SendMessage(currUser + LURK_Message_GehtInLurk);
+					CPH.SendMessage(LURK_Message_meVoranstellen + " " + currUser + LURK_Message_GehtInLurk);
 				}
 			}
 
@@ -44,11 +43,11 @@ public class CPHInline
 				{
 					CPH.RemoveUserFromGroup(currUser, platform, groupName);
 					Thread.Sleep(200);
-					CPH.SendMessage("wb " + currUser + LURK_Message_Unlurk);	// ◄◄◄◄◄ HIER kann der Text-Anfang angepasst werden
+					CPH.SendMessage(LURK_Message_meVoranstellen + " " + "wb " + currUser + LURK_Message_Unlurk);	// ◄◄◄◄◄ HIER kann der Text-Anfang angepasst werden
 				}
 				else
 				{
-					CPH.SendMessage(currUser + LURK_Message_UnlurkNoLurk);
+					CPH.SendMessage(LURK_Message_meVoranstellen + " " + currUser + LURK_Message_UnlurkNoLurk);
 				}
 			}
 
@@ -57,14 +56,14 @@ public class CPHInline
 				var groupUsers = CPH.UsersInGroup(groupName);
 				if (groupUsers == null)
 				{
-					CPH.SendMessage(LURK_Message_FehlerBenutzergruppe);
+					CPH.SendMessage(LURK_Message_meVoranstellen + " " + LURK_Message_FehlerBenutzergruppe);
 					return false;
 				}
 
 				int userCount = groupUsers.Count;
 				if (userCount == 0)
 				{
-					CPH.SendMessage(LURK_Message_NiemandImLurk);
+					CPH.SendMessage(LURK_Message_meVoranstellen + " " + LURK_Message_NiemandImLurk);
 				}
 
 				List<string> userNames = new List<string>();
@@ -97,13 +96,13 @@ public class CPHInline
 
 					for (int i = 0; i < chunks.Count; i++)
 					{
-						CPH.SendMessage($"ℹ️ Aktuell im Lurk (Teil {i + 1}/{chunks.Count}): {chunks[i]} 💤");	// ◄◄◄◄◄ HIER kann ggf. der Text angepasst werden
+						CPH.SendMessage(LURK_Message_meVoranstellen + " " + $"ℹ️ Aktuell im Lurk (Teil {i + 1}/{chunks.Count}): {chunks[i]} 💤");	// ◄◄◄◄◄ HIER kann ggf. der Text angepasst werden
 						Thread.Sleep(200);
 					}
 				}
 				else
 				{
-					CPH.SendMessage("ℹ️ Aktuell (" + userCount + ") im Lurk: " + userNamesString + " 💤 Danke für den Support <3");	// ◄◄◄◄◄ HIER kann ggf. der Text angepasst werden
+					CPH.SendMessage(LURK_Message_meVoranstellen + " " + "ℹ️ Aktuell (" + userCount + ") im Lurk: " + userNamesString + " 💤 Danke für den Support <3");	// ◄◄◄◄◄ HIER kann ggf. der Text angepasst werden
 				}
 			}
 

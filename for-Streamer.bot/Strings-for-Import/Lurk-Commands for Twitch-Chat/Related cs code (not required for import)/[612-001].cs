@@ -10,6 +10,7 @@ public class CPHInline
 {
 	public bool Execute()
 	{
+		string LURK_Message_meVoranstellen = CPH.GetGlobalVar<string>("LURK_Message_meVoranstellen");
 		string LURK_TriggerUser_1 = CPH.GetGlobalVar<string>("LURK_TriggerUser_1");
 		string LURK_TriggerUserTEXT_1 = CPH.GetGlobalVar<string>("LURK_TriggerUserTEXT_1");
 		string LURK_TriggerUser_2 = CPH.GetGlobalVar<string>("LURK_TriggerUser_2");
@@ -17,13 +18,10 @@ public class CPHInline
 		
 		string BC_USER = args.ContainsKey("broadcastUser") ? args["broadcastUser"].ToString() : "UnknownUser";
 		string TriggerUserBC_Command = "!clearLurker";	// Text, den der BROADCASTER schreibt, damit die Gruppe geleert wird ►►►[als COMMAND aktiviert]
-
 		string TriggerUser_1 = LURK_TriggerUser_1;
 		string TriggerUserTEXT_1 = LURK_TriggerUserTEXT_1;
-
 		string TriggerUser_2 = LURK_TriggerUser_2;
 		string TriggerUserTEXT_2 = LURK_TriggerUserTEXT_2;
-
 
 		string LURK_Message_BenutzergruppeGeleert = CPH.GetGlobalVar<string>("LURK_Message_BenutzergruppeGeleert");
 		string LURK_Message_FehlerBenutzergruppe = CPH.GetGlobalVar<string>("LURK_Message_FehlerBenutzergruppe");
@@ -40,20 +38,20 @@ public class CPHInline
 
 			{
 				CPH.ClearUsersFromGroup(groupName);
-				CPH.SendMessage(LURK_Message_BenutzergruppeGeleert);
+				CPH.SendMessage(LURK_Message_meVoranstellen + " " + LURK_Message_BenutzergruppeGeleert);
 				Thread.Sleep(200);
 
 				var groupUsers = CPH.UsersInGroup(groupName);
 				if (groupUsers == null)
 				{
-					CPH.SendMessage(LURK_Message_FehlerBenutzergruppe);
+					CPH.SendMessage(LURK_Message_meVoranstellen + " " + LURK_Message_FehlerBenutzergruppe);
 					return false;
 				}
 
 				int userCount = groupUsers.Count;
 				if (userCount == 0)
 				{
-					CPH.SendMessage(LURK_Message_NiemandImLurk);
+					CPH.SendMessage(LURK_Message_meVoranstellen + " " + LURK_Message_NiemandImLurk);
 				}
 			}
 
